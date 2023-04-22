@@ -230,8 +230,8 @@ export class AppComponent implements OnDestroy {
         const transactions: Tx[] = [];
         let token: any;
         let walletAddress: string;
-        combineLatest(walletAddress$).pipe(
-            switchMap((addr:any): any => {
+        combineLatest([walletAddress$]).pipe(
+            switchMap(([addr]): any => {
                 console.log('swap=>',238, addr);
                 walletAddress = addr;
                 token = addr;
