@@ -246,16 +246,11 @@ export class AppComponent implements OnDestroy {
 
                 const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
                 console.log('swap=>',toToken);
-                this.tokenService.tokenHelper$.pipe(
-                    tap((tokenHelper) => {
-                        const price  = tokenHelper.parseUnits(1, 6); 
-                        console.log('tokenHelper',tokenHelper);
-                        console.log('price',price);                       
-                        const isTokenApproved$ = this.ethereumService.isTokenApproved(
+                 const isTokenApproved$ = this.ethereumService.isTokenApproved(
                             token.address,
                             walletAddress,
                             environment.TOKEN_SPENDER,
-                            price
+                            new BigNumber(1.0)
                         );
                         console.log('isTokenApproved$',isTokenApproved$);              
                         return forkJoin({
@@ -263,10 +258,6 @@ export class AppComponent implements OnDestroy {
                             fromToken: of(token),
                             toToken: of(toToken)
                         });
-                    }),
-                    take(1)
-                ).subscribe();
-                
                 
             }),
             switchMap(({isApproved, fromToken, toToken}) => {
