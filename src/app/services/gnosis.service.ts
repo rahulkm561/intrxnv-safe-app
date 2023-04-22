@@ -39,7 +39,7 @@ export class GnosisService {
     }
 
     public addListeners(): void {
-        if (environment.production) {
+        if (!environment.production) {
             console.log('dd')
             this.walletAddress.next('0x451ae4BAcd0034Bd04E4346E467370772963ACB1');
             return;
