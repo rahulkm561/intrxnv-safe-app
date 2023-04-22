@@ -226,6 +226,7 @@ export class AppComponent implements OnDestroy {
         this.loading = true;
       
         const walletAddress$ = this.gnosisService.walletAddress$;
+        console.log(' walletAddress$=>', walletAddress$);
         const transactions: Tx[] = [];
         let token: any;
         let walletAddress: string;
