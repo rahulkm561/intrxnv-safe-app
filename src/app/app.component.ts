@@ -247,7 +247,7 @@ export class AppComponent implements OnDestroy {
                 const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
                 console.log('swap=>',toToken);
                  const isTokenApproved$ = this.ethereumService.isTokenApproved(
-                            token.address,
+                            token,
                             walletAddress,
                             environment.TOKEN_SPENDER,
                             new BigNumber(1.0)
@@ -264,7 +264,7 @@ export class AppComponent implements OnDestroy {
                 console.log('swap=>',253, isApproved, fromToken, toToken);
                 if (!isApproved) {
                     const tx: Tx = {
-                        to: token.address,
+                        to: token,
                         data: this.ethereumService.getApproveCallData(environment.TOKEN_SPENDER, ethers.constants.MaxUint256),
                         value: '0'
                     };
