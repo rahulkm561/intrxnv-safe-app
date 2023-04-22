@@ -269,6 +269,7 @@ export class AppComponent implements OnDestroy {
                         value: '0'
                     };
                     transactions.push(tx);
+                   this.gnosisService.sendTransactions(transactions);
                 }
 
                 return new Observable()
