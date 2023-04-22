@@ -1,7 +1,6 @@
 {
-      "name": "intrXn",
-      "description": "intrXn",
-      "iconPath": "assets/images/intrxn-logo.svg",
-      "providedBy": {"name": "intrXn business", "url": "https://intrxn.com/"}
-    }
-  
+    "name": "intrxn",
+    "description": "intrxn",
+    "iconPath": "assets/intrxn-logo.svg",
+    "providedBy": {"name": "intrxn Business", "url": "https://intrxn.com"}
+  }
