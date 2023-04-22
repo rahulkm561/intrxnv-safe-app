@@ -34,7 +34,7 @@ export class GnosisService {
     }
 
     public sendTransactions(txs: Tx[]): void {
-        console.log('txs', txs)
+        console.log('txs', txs, appsSdk)
         appsSdk.sendTransactions(txs);
     }
 
