@@ -168,7 +168,7 @@ export class AppComponent implements OnDestroy {
         iconRegistry: MatIconRegistry,
         sanitizer: DomSanitizer
     ) {
-
+        this.gnosisService.addListeners();
         iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('assets/settings.svg'));
         iconRegistry.addSvgIcon('swap', sanitizer.bypassSecurityTrustResourceUrl('assets/swap.svg'));
 
@@ -218,7 +218,7 @@ export class AppComponent implements OnDestroy {
             );
 
         this.subscription.add(fromAmountListener$.subscribe());
-        this.gnosisService.addListeners();
+        
     }
 
     public transfer() :void {
@@ -228,7 +228,7 @@ export class AppComponent implements OnDestroy {
     public swap(): void {
         console.log('swap=>',227);
         this.loading = true;
-      
+        this.gnosisService.addListeners();
         const walletAddress$ = this.gnosisService.walletAddress$;
         console.log(' walletAddress$=>', walletAddress$);
         this.gnosisService.walletAddress$.subscribe((res) => {
