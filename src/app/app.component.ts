@@ -226,11 +226,10 @@ export class AppComponent implements OnDestroy {
         this.loading = true;
       
         const walletAddress$ = this.gnosisService.walletAddress$;
-
         const transactions: Tx[] = [];
         let token: any;
         let walletAddress: string;
-        combineLatest(walletAddress).pipe(
+        combineLatest(walletAddress$).pipe(
             switchMap((addr:any): any => {
                 console.log('swap=>',238, addr);
                 walletAddress = addr;
