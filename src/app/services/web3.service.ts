@@ -11,7 +11,7 @@ const w = window as any;
 })
 export class Web3Service {
 
-    public rpcUrl = 'https://web3-node.1inch.exchange/';
+    public rpcUrl = 'https://polygon-mainnet.infura.io/v3/f27760eff972407dac1f24959d92f247';
 
     private web3Subject$ = new Subject<Web3>();
     web3$ = this.web3Subject$.asObservable().pipe(
