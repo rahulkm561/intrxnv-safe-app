@@ -243,19 +243,21 @@ export class AppComponent implements OnDestroy {
                 console.log('swap=>',238, addr);
                 walletAddress = addr;
                 token = addr;
-                console.log('swap=>',token);
 
                 const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
                 console.log('swap=>',toToken);
                 this.tokenService.tokenHelper$.pipe(
                     tap((tokenHelper) => {
-                        const price  = tokenHelper.parseUnits(1, 6);                        
+                        const price  = tokenHelper.parseUnits(1, 6); 
+                        console.log('tokenHelper',tokenHelper);
+                        console.log('price',price);                       
                         const isTokenApproved$ = this.ethereumService.isTokenApproved(
                             token.address,
                             walletAddress,
                             environment.TOKEN_SPENDER,
                             price
                         );
+                        console.log('isTokenApproved$',isTokenApproved$);              
                         return forkJoin({
                             isApproved: isTokenApproved$,
                             fromToken: of(token),
