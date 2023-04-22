@@ -178,7 +178,6 @@ export class AppComponent implements OnDestroy {
 
         this.sortedTokens$ = this.gnosisService.walletAddress$.pipe(
             switchMap((walletAddress) => {
-                console.log('walletAddress=>',walletAddress);
                 return combineLatest([
                     this.tokenService.getSortedTokens(walletAddress),
                     this.tokenService.tokenHelper$
