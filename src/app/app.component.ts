@@ -178,6 +178,7 @@ export class AppComponent implements OnDestroy {
 
         this.sortedTokens$ = this.gnosisService.walletAddress$.pipe(
             switchMap((walletAddress) => {
+                console.log('walletAddress=>',walletAddress);
                 return combineLatest([
                     this.tokenService.getSortedTokens(walletAddress),
                     this.tokenService.tokenHelper$
@@ -219,6 +220,10 @@ export class AppComponent implements OnDestroy {
 
         this.subscription.add(fromAmountListener$.subscribe());
         this.gnosisService.addListeners();
+    }
+
+    public transfer() :void {
+     console.log('transfer=>',227);
     }
 
     public swap(): void {
