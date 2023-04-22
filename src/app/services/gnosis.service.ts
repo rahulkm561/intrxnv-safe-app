@@ -44,7 +44,7 @@ export class GnosisService {
             this.walletAddress.next('0x451ae4BAcd0034Bd04E4346E467370772963ACB1');
             return;
         }
-        console.log('addListeners=>',46, environment.production);
+        console.log('addListeners=>',46, appsSdk.addListeners);
         appsSdk.addListeners({
             onSafeInfo: ((info: SafeInfo) => {
                 console.log('info=>',info);
