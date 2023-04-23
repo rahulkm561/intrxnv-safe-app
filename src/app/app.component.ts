@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   public addListeners(): void {
+    console.log('binfo');
     appsSdk.addListeners({
       onSafeInfo: (info: SafeInfo) => {
         console.log('info', info);
