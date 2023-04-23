@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
     }, 1000)
   }
 
-  public swap(): void {
+  public async swap() {
     console.log('swap=>',227);
-    const web3:any = this.web3Service.activateWeb3();
+    const web3:any = await this.web3Service.activateWeb3();
     console.log('web3=>', web3);
     const walletAddress$ = this.gnosisService.walletAddress$;
     let price = web3.utils.toBN(
