@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import initSdk, { SafeInfo } from '@gnosis.pm/safe-apps-sdk';
+import SafeAppsSDK from '@safe-global/safe-apps-sdk';
 
-const appsSdk = initSdk();
+type Opts = {
+  allowedDomains?: RegExp[];
+  debug?: boolean;
+};
 
+const opts: Opts = {
+  allowedDomains: [/gnosis-safe.io$/, /app.safe.global$/],
+  debug: false,
+};
+
+const appsSdk = new SafeAppsSDK(opts);
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,16 +28,9 @@ export class AppComponent implements OnInit {
     }, 1000);
   }
 
-  public addListeners(): void {
-    console.log('binfo');
-    appsSdk.addListeners({
-      onSafeInfo: (info: SafeInfo) => {
-        console.log('info', info);
-      },
-    });
+  public async addListeners() {
+    const safe = await appsSdk.safe.getInfo();
+    console.log('safe', safe)
   }
 
-  public removeListeners(): void {
-    appsSdk.removeListeners();
-  }
 }
