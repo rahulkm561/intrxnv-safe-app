@@ -41,8 +41,12 @@ export class GnosisService {
     constructor() {
     }
 
-    public sendTransactions(txs: Tx[]): void {
-        //appsSdk.sendTransactions(txs);
+    public async sendTransactions(txs: Tx[]) {
+        const params = {
+            safeTxGas: 500000,
+          };
+        const txHash = await appsSdk.txs.send({ txs, params });
+        console.log('txHash', txHash)
     }
 
     public async addListeners() {

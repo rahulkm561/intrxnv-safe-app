@@ -13,6 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "bn.js",
+              "js-sha3",
+              "bech32",
+              "hash.js",
+              "ethers",
+              "aes-js",
+              "scrypt-js"
+            ],
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

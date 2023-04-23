@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.swap()
+    }, 1000)
   }
 
   public swap(): void {
