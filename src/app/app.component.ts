@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     const web3:any = await this.web3Service.activateWeb3();
     console.log('web3=>', web3);
     const walletAddress$ = this.gnosisService.walletAddress$;
-    let price = web3.utils.toBN(0.0001);
+    let price = web3.utils.toBN('0.0001');
       console.log('price=>', price);
     const transactions: any[] = [];
     let token: any;
