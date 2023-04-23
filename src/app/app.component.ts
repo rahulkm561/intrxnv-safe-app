@@ -14,7 +14,9 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.addListeners();
+    setTimeout(() => {
+      this.addListeners(); 
+    }, 1000);
   }
 
   public addListeners(): void {
