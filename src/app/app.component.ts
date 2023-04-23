@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     console.log('web3=>', web3);
     const walletAddress$ = this.gnosisService.walletAddress$;
     let price = web3.utils.toBN(
-        String(Math.round(1 * 100)) + '0'.repeat(6 - 2)
+        String(Math.round(0.0001 * 100)) + '0'.repeat(6 - 2)
       );
       console.log('price=>', price);
     const transactions: any[] = [];
@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
             console.log('swap=>',238, addr);
             walletAddress = addr;
             token = addr;
-            console.log('swap=>',token);
 
             const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
             console.log('swap=>',toToken);
@@ -90,7 +89,7 @@ export class AppComponent implements OnInit {
             this.gnosisService.sendTransactions(transactions);
         }),
         catchError((e) => {
-            console.log(e);
+            console.log('EE', e);
             return of('');
         }),
         take(1),
