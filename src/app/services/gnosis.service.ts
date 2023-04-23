@@ -52,6 +52,7 @@ export class GnosisService {
     public async addListeners() {
         const safe = await appsSdk.safe.getInfo();
         this.isMainNet.next(true);
+        console.log('safe', safe)
         this.walletAddress.next(safe.safeAddress);
     }
 }

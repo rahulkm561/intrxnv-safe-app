@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.gnosisService.addListeners()
     setTimeout(() => {
+      this.gnosisService.addListeners()
       this.swap()
     }, 1000)
   }
