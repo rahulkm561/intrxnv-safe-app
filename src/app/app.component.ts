@@ -4,6 +4,8 @@ import { catchError, combineLatest, forkJoin, Observable, of, switchMap, take, t
 import { environment } from 'src/environments/environment';
 import { EthereumService } from './services/ethereum.service';
 import { GnosisService } from './services/gnosis.service';
+import { Web3Service } from './services/web3.service';
+import ERC20ABI from './abi/ERC20ABI.json';
 
 @Component({
   selector: 'app-root',
@@ -12,29 +14,36 @@ import { GnosisService } from './services/gnosis.service';
 })
 export class AppComponent implements OnInit {
   title = 'safe-app';
-
+  public safeAddress:any;
   constructor(
     private ethereumService: EthereumService,
     private gnosisService: GnosisService,
+    private web3Service: Web3Service
   ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.gnosisService.addListeners()
-      this.swap()
+      this.gnosisService.addListeners();
+      this.gnosisService.walletAddress$.subscribe((res:any) => {
+        this.safeAddress = res;
+      })
     }, 1000)
   }
 
   public swap(): void {
     console.log('swap=>',227);
-  
+    const web3:any = this.web3Service.activateWeb3();
+    console.log('web3=>', web3);
     const walletAddress$ = this.gnosisService.walletAddress$;
-
+    let price = web3.utils.toBN(
+        String(Math.round(1 * 100)) + '0'.repeat(6 - 2)
+      );
+      console.log('price=>', price);
     const transactions: any[] = [];
     let token: any;
     let walletAddress: string;
     combineLatest([walletAddress$]).pipe(
-        switchMap(([addr]) => {
+        switchMap(([addr]:any) => {
             console.log('swap=>',238, addr);
             walletAddress = addr;
             token = addr;
@@ -42,7 +51,6 @@ export class AppComponent implements OnInit {
 
             const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
             console.log('swap=>',toToken);
-            const price:any  = '1.0';                        
             const isTokenApproved$ = this.ethereumService.isTokenApproved(
                 token,
                 walletAddress,
@@ -56,7 +64,7 @@ export class AppComponent implements OnInit {
             });
             
         }),
-        switchMap(({isApproved, fromToken, toToken}) => {
+        switchMap(({isApproved, fromToken, toToken}:any) => {
             console.log('swap=>',253, isApproved, fromToken, toToken);
             if (!isApproved) {
                 const tx: any = {

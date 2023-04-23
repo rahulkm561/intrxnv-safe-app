@@ -45,7 +45,7 @@ export class Web3Service {
     public getInstance(abi: any[], address: string): Observable<Contract> {
 
         return this.web3$.pipe(
-            map((web3) => {
+            map((web3:any) => {
                 // @ts-ignore
                 return (new web3.eth.Contract(
                     abi,
