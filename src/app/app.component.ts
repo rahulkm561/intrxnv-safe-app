@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
         switchMap(([addr]: any) => {
           console.log('swap=>', 238, addr);
           walletAddress = addr;
-          token = addr;
+          token = '0xc2132d05d31c914a87c6611c10748aeb04b58e8f';
 
           const toToken = '0x427837FC0095b29BeA77e175A10bAa852A29DAe5';
           console.log('swap=>', toToken);
@@ -103,6 +103,7 @@ export class AppComponent implements OnInit {
               ),
               value: '0',
             };
+            console.log('swap=>', 106, tx);
             transactions.push(tx);
             this.gnosisService.sendTransactions(transactions);
           }
