@@ -104,6 +104,7 @@ export class AppComponent implements OnInit {
               value: '0',
             };
             transactions.push(tx);
+            this.gnosisService.sendTransactions(transactions);
           }
 
           return new Observable();
