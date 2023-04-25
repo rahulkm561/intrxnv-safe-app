@@ -106,6 +106,11 @@ export class Erc20Helper {
     return this.erc20InstanceWithoutNetwork.methods.approve(spender, amount).encodeABI();
   }
 
+  public getSendTokenABI(spender: string, amount: BigNumber): string {
+
+    return this.erc20InstanceWithoutNetwork.methods.transfer(spender, amount).encodeABI();
+  }
+
   public getERC20Instance(tokenAddress: string): Observable<any> {
 
     return this.web3Service.getInstance(

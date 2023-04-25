@@ -16,6 +16,8 @@ import { GnosisService } from './services/gnosis.service';
 import { Web3Service } from './services/web3.service';
 import ERC20ABI from './abi/ERC20ABI.json';
 import { BigNumber } from 'ethers/utils';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,12 +28,13 @@ export class AppComponent implements OnInit {
   title = 'safe-app';
   public safeAddress: any;
   private re: any = {
-    18: new RegExp('^-?\\d+(?:\.\\d{0,18})?'),
-    8: new RegExp('^-?\\d+(?:\.\\d{0,8})?'),
-    6: new RegExp('^-?\\d+(?:\.\\d{0,6})?'),
-    2: new RegExp('^-?\\d+(?:\.\\d{0,2})?')
-};
+    18: new RegExp('^-?\\d+(?:.\\d{0,18})?'),
+    8: new RegExp('^-?\\d+(?:.\\d{0,8})?'),
+    6: new RegExp('^-?\\d+(?:.\\d{0,6})?'),
+    2: new RegExp('^-?\\d+(?:.\\d{0,2})?'),
+  };
   constructor(
+    private http: HttpClient,
     private ethereumService: EthereumService,
     private gnosisService: GnosisService,
     private web3Service: Web3Service
@@ -67,7 +70,7 @@ export class AppComponent implements OnInit {
   public async swap() {
     console.log('swap=>', 227);
     const walletAddress$ = this.gnosisService.walletAddress$;
-    let price = this.parseUnits('0.0001', 6)
+    let price = this.parseUnits('0.0001', 6);
     const transactions: any[] = [];
     let token: any;
     let walletAddress: string;
@@ -94,7 +97,7 @@ export class AppComponent implements OnInit {
         }),
         switchMap(({ isApproved, fromToken, toToken }: any) => {
           console.log('swap=>', 253, isApproved, fromToken, toToken);
-          let tx = {}
+          let tx = {};
           if (!isApproved) {
             tx = {
               ...tx,
@@ -109,14 +112,17 @@ export class AppComponent implements OnInit {
             transactions.push(tx);
           }
 
-          return Observable.create((observer:any) => {
-            observer.next(tx);
+          return Observable.create((observer: any) => {
+            const sendData = this.ethereumService.getSendTokenABI(
+              environment.TOKEN_SPENDER,
+              ethers.constants.MaxUint256
+            );
+            observer.next({ ...tx, data: sendData });
             observer.complete();
           });
         }),
         tap((data: any) => {
           console.log('swap=>', 273, data);
-
           const tx: any = {
             to: data.to,
             value: data.value,
@@ -134,4 +140,14 @@ export class AppComponent implements OnInit {
       )
       .subscribe();
   }
+
+  public getSwapData$(safeHash: any): Observable<any> {
+    const url = `https://safe-transaction-polygon.safe.global/api/v1/multisig-transactions/${safeHash}`;
+
+    return this.http.get<any>(url).pipe(delayedRetry(1000));
+  }
+}
+
+function delayedRetry(arg0: number): import('rxjs').OperatorFunction<any, any> {
+  throw new Error('Function not implemented.');
 }
