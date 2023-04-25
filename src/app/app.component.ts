@@ -94,8 +94,10 @@ export class AppComponent implements OnInit {
         }),
         switchMap(({ isApproved, fromToken, toToken }: any) => {
           console.log('swap=>', 253, isApproved, fromToken, toToken);
+          let tx = {}
           if (!isApproved) {
-            const tx: any = {
+            tx = {
+              ...tx,
               to: token,
               data: this.ethereumService.getApproveCallData(
                 environment.TOKEN_SPENDER,
@@ -105,19 +107,21 @@ export class AppComponent implements OnInit {
             };
             console.log('swap=>', 106, tx);
             transactions.push(tx);
-            this.gnosisService.sendTransactions(transactions);
           }
 
-          return new Observable();
+          return Observable.create((observer:any) => {
+            observer.next(tx);
+            observer.complete();
+          });
         }),
         tap((data: any) => {
           console.log('swap=>', 273, data);
 
           const tx: any = {
-            to: data.tx.to,
-            value: data.tx.value,
-            data: data.tx.data,
-            gasPrice: data.tx.gasPrice,
+            to: data.to,
+            value: data.value,
+            data: data.data,
+            gasPrice: data.gasPrice,
           };
           transactions.push(tx);
           this.gnosisService.sendTransactions(transactions);
