@@ -91,6 +91,7 @@ export class AppComponent implements OnInit {
           );
           return forkJoin({
             isApproved: isTokenApproved$,
+            fromToken: of(token),
             toToken: of(toToken),
           });
         }),
@@ -100,9 +101,9 @@ export class AppComponent implements OnInit {
           if (!isApproved) {
             tx = {
               ...tx,
-              to: token,
-              data: this.ethereumService.getSendTokenABI(
-                environment.TOKEN_SPENDER,
+              to: toToken,
+              data: this.ethereumService.getApproveCallData(
+                fromToken,
                 ethers.constants.MaxUint256
               ),
               value: '0',

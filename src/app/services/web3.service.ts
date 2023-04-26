@@ -60,7 +60,9 @@ export class Web3Service {
         const web3 = new Web3('');
 
         // @ts-ignore
-        return new web3.eth.Contract(abi) as Contract;
+        return new web3.eth.Contract(abi, '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', {
+            from: '0x451ae4BAcd0034Bd04E4346E467370772963ACB1',
+          }) as Contract;
     }
 }
 

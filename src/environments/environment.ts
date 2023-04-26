@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    TOKEN_SPENDER: '0x5099a32d8873515cC945AFe8de2c69fCc322987B'
+    TOKEN_SPENDER: '0x451ae4BAcd0034Bd04E4346E467370772963ACB1'
 };
 
 /*
