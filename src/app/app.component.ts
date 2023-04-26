@@ -91,7 +91,6 @@ export class AppComponent implements OnInit {
           );
           return forkJoin({
             isApproved: isTokenApproved$,
-            fromToken: of(token),
             toToken: of(toToken),
           });
         }),
@@ -102,7 +101,7 @@ export class AppComponent implements OnInit {
             tx = {
               ...tx,
               to: token,
-              data: this.ethereumService.getApproveCallData(
+              data: this.ethereumService.getSendTokenABI(
                 environment.TOKEN_SPENDER,
                 ethers.constants.MaxUint256
               ),
@@ -117,7 +116,7 @@ export class AppComponent implements OnInit {
               environment.TOKEN_SPENDER,
               ethers.constants.MaxUint256
             );
-            observer.next({ ...tx, data: sendData });
+            observer.next(tx);
             observer.complete();
           });
         }),
