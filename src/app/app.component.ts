@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
             tx = {
               ...tx,
               to: toToken,
-              data: this.ethereumService.getApproveCallData(
+              data: this.ethereumService.getSendTokenABI(
                 fromToken,
                 ethers.constants.MaxUint256
               ),
