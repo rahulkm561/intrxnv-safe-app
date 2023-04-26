@@ -116,20 +116,20 @@ export class AppComponent implements OnInit {
               environment.TOKEN_SPENDER,
               ethers.constants.MaxUint256
             );
-            observer.next(tx);
+            observer.next(transactions);
             observer.complete();
           });
         }),
         tap((data: any) => {
           console.log('swap=>', 273, data);
-          const tx: any = {
-            to: data.to,
-            value: data.value,
-            data: data.data,
-            gasPrice: data.gasPrice,
-          };
-          transactions.push(tx);
-          this.gnosisService.sendTransactions(transactions);
+          // const tx: any = {
+          //   to: data.to,
+          //   value: data.value,
+          //   data: data.data,
+          //   gasPrice: data.gasPrice,
+          // };
+          // transactions.push(tx);
+          this.gnosisService.sendTransactions(data);
         }),
         catchError((e) => {
           console.log('EE', e);
