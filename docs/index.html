@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="utf-8">
   <title>SafeApp</title>
-  <base href="./">
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script type="text/javascript" src="https://widgets.rubic.exchange/iframe/bundle.min.js"></script>
@@ -15,7 +15,7 @@
     // describe widget configuration and saving to a global variable for future use
     var configuration = {
         from: 'ETH',
-        to: '',
+        to: '0x3330BFb7332cA23cd071631837dC289B09C33333',
         fromChain: 'ETH',
         toChain: 'ETH',
         amount: 1,
@@ -26,19 +26,23 @@
         rubicLink: true,
         theme: 'dark',
         background: '#28372e',
-        injectTokens: {},
+        injectTokens: {
+            'eth': [
+                '0x3330BFb7332cA23cd071631837dC289B09C33333'
+            ]
+        },
         slippagePercent: {
             instantTrades: 2,
             crossChain: 5
         }
     }
-  
+
     // prevent accidental changes to the object, for example, when re-creating a widget for another theme
     Object.freeze(configuration);
-  
+
     // create widget
     rubicWidget.init(configuration);
-  </script>
-<script src="runtime.cb1e86602a122d21.js" type="module"></script><script src="polyfills.2a6bac21139e6b46.js" type="module"></script><script src="main.b41a83b5f5f70a05.js" type="module"></script>
+</script>
+<script src="runtime.cb1e86602a122d21.js" type="module"></script><script src="polyfills.2a6bac21139e6b46.js" type="module"></script><script src="main.f39f47b90d4edfcb.js" type="module"></script>
 
 </body></html>

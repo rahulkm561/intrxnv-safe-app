@@ -17,7 +17,7 @@
     // describe widget configuration and saving to a global variable for future use
     var configuration = {
         from: 'ETH',
-        to: '',
+        to: '0x3330BFb7332cA23cd071631837dC289B09C33333',
         fromChain: 'ETH',
         toChain: 'ETH',
         amount: 1,
@@ -28,18 +28,22 @@
         rubicLink: true,
         theme: 'dark',
         background: '#28372e',
-        injectTokens: {},
+        injectTokens: {
+            'eth': [
+                '0x3330BFb7332cA23cd071631837dC289B09C33333'
+            ]
+        },
         slippagePercent: {
             instantTrades: 2,
             crossChain: 5
         }
     }
-  
+
     // prevent accidental changes to the object, for example, when re-creating a widget for another theme
     Object.freeze(configuration);
-  
+
     // create widget
     rubicWidget.init(configuration);
-  </script>
+</script>
 </body>
 </html>
