@@ -61,6 +61,12 @@ section {
   color: #012970;
 }
 
+.section-header span {
+  display: block;
+  margin: 15px 0px 10px 0px;
+  font-size: 20px;
+}
+
 @media (max-width: 768px) {
   .section-header p {
     font-size: 28px;
@@ -472,7 +478,7 @@ section {
 
 .hero h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 700;
   color: #012970;
 }
@@ -563,7 +569,8 @@ section {
 --------------------------------------------------------------*/
 .about .content {
   background-color: #f6f9ff;
-  padding: 40px;
+  padding: 54px 40px;
+  border-radius: 30px;
 }
 
 .about h3 {
@@ -2414,4 +2421,34 @@ section {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+.first-sec .feature-icons, .first-sec .feture-tabs {
+  margin-top: 20px;
+}
+.hljs {
+  background: rgb(22, 24, 32);
+  color: rgb(204, 204, 221);
+}
+
+.hljs-name {
+  color: rgb(255, 187, 102);
+}
+.hljs-attr {
+  color: rgb(119, 221, 221);
+}
+.hljs-string {
+  color: rgb(255, 136, 153);
+}
+.hljs-meta {
+  color: rgb(102, 102, 119);
+}
+.hljs-keyword {
+  color: rgb(102, 102, 119);
+}
+
+pre {
+  display: inline-block;
+  width: 100%;
+  margin-top: -24px;
 }
