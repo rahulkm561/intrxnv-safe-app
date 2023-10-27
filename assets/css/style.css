@@ -519,6 +519,7 @@ section {
 
 .hero .hero-img {
   text-align: left;
+  margin-top: -65px;
 }
 
 @media (min-width: 1024px) {
@@ -535,7 +536,7 @@ section {
 
   .hero .hero-img {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 28px;
   }
 
   .hero .hero-img img {
@@ -1622,6 +1623,7 @@ section {
   color: #444444;
   background: #fafbff;
   padding: 30px;
+  min-height: 225px;
 }
 
 .contact .info-box i {
